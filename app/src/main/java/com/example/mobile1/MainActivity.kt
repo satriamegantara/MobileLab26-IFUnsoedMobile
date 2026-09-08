@@ -16,7 +16,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,17 +30,34 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.mobile1.ui.screen.BasicInfoScreen
+import com.example.mobile1.ui.screen.HubungiKamiScreen
 import com.example.mobile1.ui.theme.Mobile1Theme
-import org.intellij.lang.annotations.JdkConstants
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Mobile1Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LayoutTentangJualan()
+            Mobile1Theme(){
+                Surface(
+                    modifier= Modifier.fillMaxSize(),
+                    color= MaterialTheme.colorScheme.background
+                ){
+                    val navController= rememberNavController()
+                    NavHost(navController=navController,startDestination="basic_info"){
+                        composable("basic_info"){
+                            BasicInfoScreen(
+                                onNavigateToContact = {navController.navigate("form_screen")}
+                            )
+                        }
+                        composable("form_screen"){
+                            HubungiKamiScreen(navController=navController)
+                        }
+                    }
                 }
             }
         }
