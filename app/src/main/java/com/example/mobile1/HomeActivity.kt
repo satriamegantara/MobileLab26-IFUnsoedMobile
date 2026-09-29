@@ -20,31 +20,37 @@ import com.example.mobile1.ui.screen.DaftarProdukScreen
 import com.example.mobile1.ui.screen.DetailProductScreen
 import com.example.mobile1.ui.screen.HubungiKamiScreen
 import com.example.mobile1.ui.theme.Mobile1Theme
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.mobile1.ui.viewmodel.ProductViewModel
 
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Mobile1Theme() {
+            Mobile1Theme {
                 val navController = rememberNavController()
+                val productViewModel: ProductViewModel = viewModel()
+
                 NavHost(navController = navController, startDestination = "daftar_produk") {
-                    composable(route = "daftar_produk") {
-                        DaftarProdukScreen(navController = navController)
+                    composable("daftar_produk") {
+                        DaftarProdukScreen(
+                            navController = navController,
+                            viewModel = productViewModel
+                        )
                     }
                     composable(
                         route = "detail/{productId}",
-                        arguments = listOf(navArgument(name = "productId") {
-                            type = NavType.IntType
-                        })
+                        arguments = listOf(navArgument("productId") { type = NavType.IntType })
                     ) { backStackEntry ->
                         val productId = backStackEntry.arguments?.getInt("productId") ?: 0
                         DetailProductScreen(
                             productId = productId,
-                            navController = navController
+                            navController = navController,
+                            viewModel = productViewModel
                         )
                     }
-                    composable(route = "hubungi_kami") {
+                    composable("hubungi_kami") {
                         HubungiKamiScreen(navController = navController)
                     }
                 }
