@@ -1,3 +1,23 @@
 <resources>
+    <!-- App & General -->
     <string name="app_name">Getar</string>
+    <string name="app_subtitle">Gempa Terkini BMKG</string>
+    <string name="search_hint">Cari wilayah, mis. \"Maluku\"</string>
+    <string name="loading_message">Memuat data gempa…</string>
+    <string name="error_connection">Tidak dapat terhubung. Periksa koneksi internet Anda.</string>
+    <string name="retry">Coba Lagi</string>
+    <string name="empty_search">Tidak ada gempa untuk “%1$s”</string>
+    <string name="clear_search">Hapus pencarian</string>
+    <string name="detail_title">Detail Gempa</string>
+    <string name="back">Kembali</string>
+    <string name="empty_data">Belum ada data gempa</string>
+
+    <!-- Detail Labels -->
+    <string name="label_tanggal">Tanggal</string>
+    <string name="label_jam">Jam</string>
+    <string name="label_coordinates">Coordinates</string>
+    <string name="label_magnitudo">Magnitudo</string>
+    <string name="label_kedalaman">Kedalaman</string>
+    <string name="label_wilayah">Wilayah</string>
+    <string name="label_potensi">Potensi</string>
 </resources>
