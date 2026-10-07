@@ -10,7 +10,7 @@ Aplikasi Android modern berbasis **Jetpack Compose** dan arsitektur **MVVM** yan
 
 |         Home Screen (Light)          |          Detail Screen (Light)           |           Home Screen (Dark)            |                Error State                 |
 | :----------------------------------: | :--------------------------------------: | :-------------------------------------: | :----------------------------------------: |
-| ![Home Screen](screenshots/home.png) | ![Detail Screen](screenshots/detail.png) | ![Home Dark](screenshots/home_dark.png) | ![Error State](screenshots/error_dark.png) |
+| ![Home Screen](screenshots/home.jpg) | ![Detail Screen](screenshots/detail.jpg) | ![Home Dark](screenshots/home_dark.jpg) | ![Error State](screenshots/error_dark.jpg) |
 
 ---
 
