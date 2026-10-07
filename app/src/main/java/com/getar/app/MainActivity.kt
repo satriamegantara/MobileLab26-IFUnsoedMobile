@@ -13,7 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.getar.app.data.repository.GempaRepository
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.getar.app.ui.home.HomeViewModel
+import com.getar.app.ui.state.UiState
 import com.getar.app.ui.theme.GetarTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,16 +25,14 @@ class MainActivity : ComponentActivity() {
         setContent {
             GetarTheme {
                 // TEMPORARY - hapus di M8
-                LaunchedEffect(Unit) {
-                    try {
-                        val repository = GempaRepository()
-                        val data = repository.getGempaTerkini()
-                        Log.d("GetarTest", "Jumlah data: ${data.size}")
-                        if (data.isNotEmpty()) {
-                            Log.d("GetarTest", "Data pertama: ${data[0]}")
+                val homeViewModel: HomeViewModel = viewModel()
+                LaunchedEffect(homeViewModel) {
+                    homeViewModel.uiState.collect { state ->
+                        when (state) {
+                            is UiState.Loading -> Log.d("GetarTest", "State: Loading")
+                            is UiState.Success -> Log.d("GetarTest", "State: Success with ${state.data.size} items")
+                            is UiState.Error -> Log.e("GetarTest", "State: Error -> ${state.message}")
                         }
-                    } catch (e: Exception) {
-                        Log.e("GetarTest", "Error fetching gempa: ${e.message}", e)
                     }
                 }
 
